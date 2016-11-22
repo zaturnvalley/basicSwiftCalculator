@@ -16,7 +16,7 @@ class CalculatorBrain
     
     var result: Double{
         get {
-            
+            return 0.0
         }
     }
-}s
+}
