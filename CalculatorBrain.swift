@@ -15,15 +15,25 @@ class CalculatorBrain
         accumulator = operand
     }
     
-    var operations: Dictionary<String,Double> = [
-        "π" : M_PI,
-        "e" : M_E,
+    var operations: Dictionary<String,Operation> = [
+        "π" : Operation.Constant,
+        "e" : Operation.Constant,
+        "√" : Operation.UnaryOperation,
+        "cos" : Operation.UnaryOperation
         
     ]
     
+    enum Operation {
+        case Constant
+        case UnaryOperation
+        case BinaryOperation
+        case Equals
+    }
+    
     func performOperation(symbol: String) {
-        let constant = operations[symbol]
-        accumulator = constant
+        if let constant = operations[symbol] {
+            accumulator = constant
+        }
     }
     
     var result: Double{
