@@ -31,12 +31,17 @@ class CalculatorBrain
     }
     
     func performOperation(symbol: String) {
-        if let constant = operations[symbol] {
-            accumulator = constant
+        if let operation = operations[symbol] {
+            switch operation {
+                case .Constant: break
+                case .UnaryOperation: break
+                case .BinaryOperation: break
+                case .Equals: break
+            }
         }
     }
     
-    var result: Double{
+    var result: Double {
         get {
             return accumulator
         }
