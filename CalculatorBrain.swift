@@ -8,6 +8,10 @@
 
 import Foundation
 
+enum Optional<T> {
+    case None
+    case Some(T)
+}
 class CalculatorBrain
 {
     private var accumulator = 0.0
@@ -16,15 +20,15 @@ class CalculatorBrain
     }
     
     var operations: Dictionary<String,Operation> = [
-        "π" : Operation.Constant,
-        "e" : Operation.Constant,
+        "π" : Operation.Constant(M_PI),
+        "e" : Operation.Constant(M_E),
         "√" : Operation.UnaryOperation,
         "cos" : Operation.UnaryOperation
         
     ]
     
     enum Operation {
-        case Constant
+        case Constant(Double)
         case UnaryOperation
         case BinaryOperation
         case Equals
@@ -33,10 +37,10 @@ class CalculatorBrain
     func performOperation(symbol: String) {
         if let operation = operations[symbol] {
             switch operation {
-                case .Constant: break
-                case .UnaryOperation: break
-                case .BinaryOperation: break
-                case .Equals: break
+            case .Constant(let value): accumulator = value
+            case .UnaryOperation: break
+            case .BinaryOperation: break
+            case .Equals: break
             }
         }
     }
